@@ -6,6 +6,9 @@ import Students from './components/students/students-list';
 import AddTeacher from './components/teachers/add-teacher';
 import AddCourse from './components/courses/add-course';
 import AddStudent from './components/students/add-student';
+import UpdateTeacher from './components/teachers/update-teacher';
+import UpdateCourse from './components/courses/update-course';
+import UpdateStudent from './components/students/update-student';
 
 function App() {
   return (
@@ -28,10 +31,13 @@ function App() {
         <Routes>
           <Route path="/*" element={<Teachers />} />
           <Route path="/addTeacher" element={<AddTeacher />} />
+          <Route path="/updateTeacher/:id" element={<UpdateTeacher />} />
           <Route path="/courses/*" element={<Courses />} />
           <Route path="/addCourse" element={<AddCourse />} />
+          <Route path="/updateCourse/:id" element={<UpdateCourse />} />
           <Route path="/students/*" element={<Students />} />
           <Route path="/addStudent" element={<AddStudent />} />
+          <Route path="updateStudent/:id" element={<UpdateStudent />} />
         </Routes>
         </div>
     </div>

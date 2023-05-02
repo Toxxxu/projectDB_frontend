@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CourseService from '../../services/courses';
 import StudentService from '../../services/students';
 
@@ -7,6 +8,7 @@ const AddStudent = () => {
     const [email, setEmail] = useState('');
     const [idCourse, setIdCourse] = useState('');
     const [age, setAge] = useState('');
+    const navigate = useNavigate();
 
     const [courses, setCourses] = useState([]);
 
@@ -26,6 +28,7 @@ const AddStudent = () => {
         setEmail('');
         setIdCourse('');
         setAge('');
+        navigate('/students');
     }
 
     useEffect(() => {
@@ -53,7 +56,7 @@ const AddStudent = () => {
                 </label>
                 <label>
                     Email:
-                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
                 <label>
                     Course:
@@ -65,9 +68,9 @@ const AddStudent = () => {
                 </label>
                 <label>
                     Age:
-                    <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
+                    <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
                 </label>
-                <button type="submit">Add Course</button>
+                <button type="submit">Add Student</button>
             </form>
         </div>
     )

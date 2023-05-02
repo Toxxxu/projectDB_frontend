@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TeacherService from '../../services/teachers';
 
 const AddTeacher = () => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [age, setAge] = useState('');
+    const navigate = useNavigate();
 
     const teacherService = new TeacherService();
 
@@ -20,6 +22,7 @@ const AddTeacher = () => {
         setFullName('');
         setEmail('');
         setAge('');
+        navigate('/');
     };
 
     return (
@@ -32,11 +35,11 @@ const AddTeacher = () => {
                 </label>
                 <label>
                     Email:
-                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
                 <label>
                     Age:
-                    <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
+                    <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
                 </label>
                 <button type="submit">Add Teacher</button>
             </form>

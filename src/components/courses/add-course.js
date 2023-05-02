@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TeacherService from '../../services/teachers';
 import CourseService from '../../services/courses';
 
@@ -7,6 +8,7 @@ const AddCourse = () => {
     const [idTeacher, setIdTeacher] = useState('');
     const [year, setYear] = useState('');
     const [price, setPrice] = useState('');
+    const navigate = useNavigate();
 
     const [teachers, setTeachers] = useState([]);
 
@@ -26,6 +28,7 @@ const AddCourse = () => {
         setIdTeacher('');
         setYear('');
         setPrice('');
+        navigate('/courses');
     }
 
     useEffect(() => {
@@ -61,11 +64,11 @@ const AddCourse = () => {
                 </label>
                 <label>
                     Year:
-                    <input type="text" value={year}  onChange={(e) => setYear(e.target.value)} />
+                    <input type="number" value={year}  onChange={(e) => setYear(e.target.value)} />
                 </label>
                 <label>
                     Price:
-                    <input type="text" value={price}  onChange={(e) => setPrice(e.target.value)} />
+                    <input type="number" value={price}  onChange={(e) => setPrice(e.target.value)} />
                 </label>
                 <button type="submit">Add Course</button>
             </form>
