@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Route, Link, Routes, useNavigate } from 'react-router-dom';
 import CourseService from '../../services/courses';
 import AddCourse from './add-course';
@@ -34,12 +35,13 @@ const Courses = () => {
     return (
         <div>
             <h1>Courses</h1>
-            <Link to="/addCourse">Add Course</Link>
+            <Link to="/addCourse">Add Course <FontAwesomeIcon icon="fa-solid fa-square-plus" size="lg" /></Link>
             <ul>
                 {courses.map((course) => (
                     <li key={course.id_course}>
-                        <Link to={`/updateCourse/${course.id_course}`}>{course.name}</Link>
-                        <button onClick={() => handleDelete(course.id_course)}>Delete</button>
+                        {course.name}
+                        <Link to={`/updateCourse/${course.id_course}`}><FontAwesomeIcon icon="fa-solid fa-pen" style={{color: "#1a54b7",}} /></Link>
+                        <button onClick={() => handleDelete(course.id_course)} className='btn-trash'><FontAwesomeIcon icon="fa-solid fa-trash" style={{color: "#ffffff",}} /></button>
                     </li>
                 ))}
             </ul>

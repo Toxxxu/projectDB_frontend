@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Route, Link, Routes, useNavigate } from 'react-router-dom';
 import StudentService from '../../services/students';
 import AddStudent from './add-student';
@@ -34,12 +35,13 @@ const Students = () => {
     return (
         <div>
             <h1>Students</h1>
-            <Link to="/addStudent">Add student</Link>
+            <Link to="/addStudent">Add student <FontAwesomeIcon icon="fa-solid fa-user-plus" size="lg" /></Link>
             <ul>
                 {students.map((student) => (
                     <li key={student.id_student}>
-                        <Link to={`/updateStudent/${student.id_student}`}>{student.full_name}</Link>
-                        <button onClick={() => handleDelete(student.id_student)}>Delete</button>
+                        {student.full_name}
+                        <Link to={`/updateStudent/${student.id_student}`}><FontAwesomeIcon icon="fa-solid fa-pen" style={{color: "#1a54b7",}} /></Link>
+                        <button onClick={() => handleDelete(student.id_student)} className='btn-trash'><FontAwesomeIcon icon="fa-solid fa-trash" style={{color: "#ffffff",}} /></button>
                     </li>
                 ))}
             </ul>
