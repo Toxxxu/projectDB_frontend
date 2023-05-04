@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Form from 'react-bootstrap/Form';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import { useParams, useNavigate } from "react-router-dom";
 import TeacherService from '../../services/teachers';
 
@@ -46,7 +49,30 @@ const UpdateTeacher = () => {
 
     return (
         <div>
-            <h1>Update Teacher</h1>
+            <div className='main-txt'>
+                <h1>
+                    <Badge bg="secondary">Update Teacher</Badge>
+                </h1>
+            </div>
+            <div className='main-txt'>
+                <Form onSubmit={onSubmit}>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Full Name:</Form.Label>
+                        <Form.Control type="text" name="full_name" value={teacher.full_name} onChange={onChange} />
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Email:</Form.Label>
+                        <Form.Control type="email" name="email" value={teacher.email} onChange={onChange} />
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Age:</Form.Label>
+                        <Form.Control type="number" name="age" value={teacher.age} onChange={onChange} />
+                    </Form.Group>
+                    <Button type='submit' variant="primary" style={{ alignContent: 'center' }}>Update</Button>
+                    <Button href='/' type='reset' variant="danger" style={{ alignContent: 'center' }}>Cancel</Button>
+                </Form>
+            </div>
+            {/* <h1>Update Teacher</h1>
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Full Name</label>
@@ -76,7 +102,7 @@ const UpdateTeacher = () => {
                     />
                 </div>
                 <button type="submit">Update Teacher</button>
-            </form>
+            </form> */}
         </div>
     )
 

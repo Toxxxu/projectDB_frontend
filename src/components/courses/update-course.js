@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Form from 'react-bootstrap/Form';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import { useParams, useNavigate } from "react-router-dom";
 import CourseService from '../../services/courses';
 import TeacherService from '../../services/teachers';
@@ -63,8 +66,38 @@ const UpdateCourse = () => {
 
     return (
         <div>
-            <h1>Update Course</h1>
-            <form onSubmit={onSubmit}>
+            <div className='main-txt'>
+                <h1>
+                    <Badge bg="secondary">Update Course</Badge>
+                </h1>
+            </div>
+            <div className='main-txt'>
+                <Form onSubmit={onSubmit}>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Name:</Form.Label>
+                        <Form.Control type='text' name='name' value={course.name} onChange={onChange} />
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Teacher:</Form.Label>
+                        <Form.Select value={course.id_teacher} name="id_teacher" onChange={onChange}>
+                            {teachers.map((teacher) => (
+                                <option key={teacher.id_teacher} value={teacher.id_teacher}>{teacher.full_name}</option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Year:</Form.Label>
+                        <Form.Control type='number' name='year' value={course.year} onChange={onChange} />
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Price:</Form.Label>
+                        <Form.Control type='number' name='price' value={course.price} onChange={onChange} />
+                    </Form.Group>
+                    <Button type='submit' variant="primary" style={{ alignContent: 'center' }}>Add</Button>
+                    <Button href='/courses' type='reset' variant="danger" style={{ alignContent: 'center' }}>Cancel</Button>
+                </Form>
+            </div>
+            {/* <form onSubmit={onSubmit}>
                 <div>
                     <label>Name</label>
                         <input
@@ -101,7 +134,7 @@ const UpdateCourse = () => {
                         />
                 </div>
                 <button type="submit">Update Course</button>
-            </form>
+            </form> */}
         </div>
     )
 }

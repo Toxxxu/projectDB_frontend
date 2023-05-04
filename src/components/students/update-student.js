@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Form from 'react-bootstrap/Form';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import { useParams, useNavigate } from "react-router-dom";
 import CourseService from '../../services/courses';
 import StudentService from '../../services/students';
@@ -63,8 +66,38 @@ const UpdateStudent = () => {
 
     return (
         <div>
-            <h1>Update Student</h1>
-            <form onSubmit={onSubmit}>
+            <div className='main-txt'>
+                <h1>
+                    <Badge bg="secondary">Update Student</Badge>
+                </h1>
+            </div>
+            <div className='main-txt'>
+                <Form onSubmit={onSubmit}>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Full Name:</Form.Label>
+                        <Form.Control type='text' name='full_name' value={student.full_name} onChange={onChange} />
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Email:</Form.Label>
+                        <Form.Control type='email' name='email' value={student.email} onChange={onChange} />
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Course:</Form.Label>
+                        <Form.Select value={student.id_course} name="id_course" onChange={onChange}>
+                            {courses.map((course) => (
+                                <option key={course.id_course} value={course.id_course}>{course.name}</option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
+                        <Form.Label>Age:</Form.Label>
+                        <Form.Control type='number' name='age' value={student.age} onChange={onChange} />
+                    </Form.Group>
+                    <Button type='submit' variant="primary" style={{ alignContent: 'center' }}>Add</Button>
+                    <Button href='/students' type='reset' variant="danger" style={{ alignContent: 'center' }}>Cancel</Button>
+                </Form>
+            </div>
+            {/* <form onSubmit={onSubmit}>
                 <div>
                     <label>Full Name</label>
                     <input
@@ -101,7 +134,7 @@ const UpdateStudent = () => {
                     />
                 </div>
                 <button type="submit">Update Student</button>
-            </form>
+            </form> */}
         </div>
     )
 }

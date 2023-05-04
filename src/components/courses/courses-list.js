@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Route, Link, Routes, useNavigate } from 'react-router-dom';
 import CourseService from '../../services/courses';
+import TeacherService from '../../services/teachers';
 import AddCourse from './add-course';
 import UpdateCourse from './update-course';
 
 const Courses = () => {
     const [courses, setCourses] = useState([]);
     const navigate = useNavigate();
+
+    const [teachers, setTeachers] = useState([]);
 
     useEffect(() => {
         const courseService = new CourseService();
@@ -18,6 +23,17 @@ const Courses = () => {
         };
         
         fetchCourses();
+    }, []);
+
+    useEffect(() => {
+        const teacherService = new TeacherService();
+
+        const fetchTeachers = async () => {
+            const data = await teacherService.getAll();
+            setTeachers(data.data);
+        };
+
+        fetchTeachers();
     }, []);
 
     const handleDelete = async (id) => {
@@ -34,14 +50,34 @@ const Courses = () => {
 
     return (
         <div>
-            <h1>Courses</h1>
-            <Link to="/addCourse">Add Course <FontAwesomeIcon icon="fa-solid fa-square-plus" size="lg" /></Link>
+            <div className='main-txt'>
+                <h1 className='main'>
+                    <Badge bg="secondary">Courses</Badge>
+                </h1>
+                <h2>
+                    <Link to="/addCourse">
+                        <Badge bg="success">Add Course <FontAwesomeIcon icon="fa-solid fa-square-plus" size="lg" /></Badge>
+                    </Link>
+                </h2>
+            </div>
             <ul>
                 {courses.map((course) => (
                     <li key={course.id_course}>
-                        {course.name}
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Body>
+                                <Card.Title>{course.name}</Card.Title>
+                                <Card.Text>
+                                    Teacher: {teachers.map((teacher) => (course.id_teacher === teacher.id_teacher ? teacher.full_name : ""))} <br />
+                                    Year: {course.year}<br />
+                                    Price: {course.price}<br />
+                                </Card.Text>
+                                <Card.Link href={`/updateCourse/${course.id_course}`}><FontAwesomeIcon icon="fa-solid fa-pen" style={{color: "#1a54b7",}} /></Card.Link>
+                                <Card.Link href='/courses' onClick={() => handleDelete(course.id_student)}><FontAwesomeIcon icon="fa-solid fa-trash" /></Card.Link>
+                            </Card.Body>
+                        </Card>
+                        {/* {course.name}
                         <Link to={`/updateCourse/${course.id_course}`}><FontAwesomeIcon icon="fa-solid fa-pen" style={{color: "#1a54b7",}} /></Link>
-                        <button onClick={() => handleDelete(course.id_course)} className='btn-trash'><FontAwesomeIcon icon="fa-solid fa-trash" style={{color: "#ffffff",}} /></button>
+                        <button onClick={() => handleDelete(course.id_course)} className='btn-trash'><FontAwesomeIcon icon="fa-solid fa-trash" style={{color: "#ffffff",}} /></button> */}
                     </li>
                 ))}
             </ul>
