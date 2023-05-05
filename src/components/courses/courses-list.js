@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Route, Link, Routes, useNavigate } from 'react-router-dom';
 import CourseService from '../../services/courses';
 import TeacherService from '../../services/teachers';
+import Course from './course-page';
 import AddCourse from './add-course';
 import UpdateCourse from './update-course';
 
@@ -63,7 +64,7 @@ const Courses = () => {
             <ul>
                 {courses.map((course) => (
                     <li key={course.id_course}>
-                        <Card style={{ width: '18rem' }}>
+                        <Card style={{ width: '20rem' }}>
                             <Card.Body>
                                 <Card.Title>{course.name}</Card.Title>
                                 <Card.Text>
@@ -71,8 +72,9 @@ const Courses = () => {
                                     Year: {course.year}<br />
                                     Price: {course.price}<br />
                                 </Card.Text>
+                                <Card.Link href={`/course/${course.id_course}`}><FontAwesomeIcon icon="fa-solid fa-eye" /></Card.Link>
                                 <Card.Link href={`/updateCourse/${course.id_course}`}><FontAwesomeIcon icon="fa-solid fa-pen" style={{color: "#1a54b7",}} /></Card.Link>
-                                <Card.Link href='/courses' onClick={() => handleDelete(course.id_student)}><FontAwesomeIcon icon="fa-solid fa-trash" /></Card.Link>
+                                <Card.Link href='/courses' onClick={() => handleDelete(course.id_course)}><FontAwesomeIcon icon="fa-solid fa-trash" /></Card.Link>
                             </Card.Body>
                         </Card>
                         {/* {course.name}
@@ -82,6 +84,7 @@ const Courses = () => {
                 ))}
             </ul>
             <Routes>
+                <Route path="/course/:id" element={<Course />} />
                 <Route path="/addCourse" element={<AddCourse />} />
                 <Route path="/updateCourse/:id" element={<UpdateCourse />} />
             </Routes>

@@ -9,6 +9,10 @@ class CourseService {
         return http.get(`/courses/${id}`);
     }
 
+    getByTeacherId(id) {
+        return http.get(`/courses/teacher/${id}`);
+    }
+
     create(data) {
         return http.post('/courses', data);
     }

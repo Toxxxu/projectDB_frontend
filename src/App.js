@@ -14,6 +14,8 @@ import AddStudent from './components/students/add-student';
 import UpdateTeacher from './components/teachers/update-teacher';
 import UpdateCourse from './components/courses/update-course';
 import UpdateStudent from './components/students/update-student';
+import Teacher from './components/teachers/teacher-page';
+import Course from './components/courses/course-page';
 
 library.add(fas);
 
@@ -47,9 +49,11 @@ function App() {
 
           <Routes>
             <Route path="/*" element={<Teachers />} />
+            <Route path="/teacher/:id/*" element={<Teacher />} />
             <Route path="/addTeacher" element={<AddTeacher />} />
             <Route path="/updateTeacher/:id" element={<UpdateTeacher />} />
             <Route path="/courses/*" element={<Courses />} />
+            <Route path="/course/:id/*" element={<Course />} />
             <Route path="/addCourse" element={<AddCourse />} />
             <Route path="/updateCourse/:id" element={<UpdateCourse />} />
             <Route path="/students/*" element={<Students />} />

@@ -62,8 +62,8 @@ const Students = () => {
             </div>
             <ul>
                 {students.map((student) => (
-                    <li key={student.id_student} className='show-up'>
-                        <Card style={{ width: '18rem' }}>
+                    <li key={student.id_student}>
+                        <Card style={{ width: '20rem' }}>
                             <Card.Body>
                                 <Card.Title>{student.full_name}</Card.Title>
                                 <Card.Subtitle className='mb-2 text-muted'>{student.email}</Card.Subtitle>

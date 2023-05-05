@@ -4,6 +4,7 @@ import Badge from 'react-bootstrap/Badge';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Route, Link, Routes, useNavigate } from 'react-router-dom';
 import TeacherService from '../../services/teachers';
+import Teacher from './teacher-page';
 import AddTeacher from './add-teacher';
 import UpdateTeacher from './update-teacher';
 
@@ -49,13 +50,14 @@ const Teachers = () => {
           <ul>
             {teachers.map((teacher) => (
               <li key={teacher.id_teacher} className='show-up'>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '20rem' }}>
                   <Card.Body>
                     <Card.Title>{teacher.full_name}</Card.Title>
                     <Card.Subtitle className='mb-2 text-muted'>{teacher.email}</Card.Subtitle>
                     <Card.Text>
                       Age: {teacher.age}<br />
                     </Card.Text>
+                    <Card.Link href={`/teacher/${teacher.id_teacher}`}><FontAwesomeIcon icon="fa-solid fa-eye" /></Card.Link>
                     <Card.Link href={`/updateTeacher/${teacher.id_teacher}`}><FontAwesomeIcon icon="fa-solid fa-pen" style={{color: "#1a54b7",}} /></Card.Link>
                     <Card.Link href='/' onClick={() => handleDelete(teacher.id_teacher)}><FontAwesomeIcon icon="fa-solid fa-trash" /></Card.Link>
                   </Card.Body>
@@ -67,6 +69,7 @@ const Teachers = () => {
             ))}
           </ul>
           <Routes>
+            <Route path="/teacher/:id" element={<Teacher />} />
             <Route path="/addTeacher" element={<AddTeacher />} />
             <Route path="/updateTeacher/:id" element={<UpdateTeacher />} />
           </Routes>

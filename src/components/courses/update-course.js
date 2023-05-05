@@ -93,7 +93,7 @@ const UpdateCourse = () => {
                         <Form.Label>Price:</Form.Label>
                         <Form.Control type='number' name='price' value={course.price} onChange={onChange} />
                     </Form.Group>
-                    <Button type='submit' variant="primary" style={{ alignContent: 'center' }}>Add</Button>
+                    <Button type='submit' variant="primary" style={{ alignContent: 'center' }}>Update</Button>
                     <Button href='/courses' type='reset' variant="danger" style={{ alignContent: 'center' }}>Cancel</Button>
                 </Form>
             </div>

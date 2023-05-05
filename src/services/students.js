@@ -9,6 +9,10 @@ class StudentService {
         return http.get(`/students/${id}`);
     }
 
+    getByCourseId(id) {
+        return http.get(`/students/course/${id}`);
+    }
+
     create(data) {
         return http.post('/students', data);
     }
