@@ -78,7 +78,7 @@ const AddCourse = () => {
                         <Form.Label>Price:</Form.Label>
                         <Form.Control type='number' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='1000' />
                     </Form.Group>
-                    <Button type='submit' variant="primary" style={{ alignContent: 'center' }}>Add</Button>
+                    <Button href='/courses' type='submit' variant="primary" style={{ alignContent: 'center' }}>Add</Button>
                     <Button href='/courses' type='reset' variant="danger" style={{ alignContent: 'center' }}>Cancel</Button>
                 </Form>
             </div>

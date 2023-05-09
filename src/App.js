@@ -16,6 +16,9 @@ import UpdateCourse from './components/courses/update-course';
 import UpdateStudent from './components/students/update-student';
 import Teacher from './components/teachers/teacher-page';
 import Course from './components/courses/course-page';
+import Ratings from './components/ratings/ratings-list';
+import AddRating from './components/ratings/add-rating';
+import UpdateRating from './components/ratings/update-rating';
 
 library.add(fas);
 
@@ -30,6 +33,7 @@ function App() {
                 <Nav.Link href='/'>Teachers</Nav.Link>
                 <Nav.Link href='/courses'>Courses</Nav.Link>
                 <Nav.Link href='/students'>Students</Nav.Link>
+                <Nav.Link href='/ratings'>Ratings</Nav.Link>
               </Nav>
             </Container>
           </Navbar>
@@ -59,6 +63,9 @@ function App() {
             <Route path="/students/*" element={<Students />} />
             <Route path="/addStudent" element={<AddStudent />} />
             <Route path="updateStudent/:id" element={<UpdateStudent />} />
+            <Route path="/ratings/*" element={<Ratings />} />
+            <Route path="/addRating" element={<AddRating />} />
+            <Route path="/updateRating/:id" element={<UpdateRating />} />
           </Routes>
         </div>
     </div>

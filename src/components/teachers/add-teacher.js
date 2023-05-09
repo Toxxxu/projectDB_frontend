@@ -49,7 +49,7 @@ const AddTeacher = () => {
                         <Form.Label>Age:</Form.Label>
                         <Form.Control type="number" value={age} onChange={(e) => setAge(e.target.value)} placeholder='30' />
                     </Form.Group>
-                    <Button type='submit' variant="primary" style={{ alignContent: 'center' }}>Add</Button>
+                    <Button href='/' type='submit' variant="primary" style={{ alignContent: 'center' }}>Add</Button>
                     <Button href='/' type='reset' variant="danger" style={{ alignContent: 'center' }}>Cancel</Button>
                 </Form>
             </div>
